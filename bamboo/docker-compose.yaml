@@ -1,0 +1,19 @@
+version: '3'
+services:
+  bamboo-server:
+    image: docker-bamboo-server:latest
+    ports:
+      - "8085:32807"
+      - "54663:32806"
+    networks:
+      default:
+        - ipv4_address: 172.20.0.2
+  bamboo-agent:
+    image: kondzix/my-bamboo-agent:version1
+    networks:
+      default:
+        - ipv4_address: 172.20.0.3
+  networks:
+    default:
+      external:
+        name: bridge
